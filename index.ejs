@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <!-- Dynamic Content from Server -->
+    <h1>Welcome to <%= title %></h1>
+
+    <!-- File Upload Form -->
+    <form action="/api/scans/upload" method="POST" enctype="multipart/form-data">
+      <label for="file">Choose a file to upload:</label>
+      <input type="file" name="file" id="file" required />
+      <button type="submit">Upload</button>
+    </form>
+
+    <!-- Show a list of files -->
+    <h2>Uploaded Files:</h2>
+    <ul>
+      <% if (files && files.length > 0) { %>
+        <% files.forEach(function(file) { %>
+          <li><%= file.filename %></li>
+        <% }) %>
+      <% } else { %>
+        <li>No files uploaded yet.</li>
+      <% } %>
+    </ul>
+  </body>
+</html>
